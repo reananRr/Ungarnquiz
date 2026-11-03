@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>Ungarn-Quiz – Entdeckerwissen</title>
+<style>
+:root{--red:#c83b46;--green:#287b57;--ink:#20302b;--muted:#64716b;--cream:#f7f4ec;--card:#fff;--gold:#f0bd4e}
+*{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{margin:0;background:radial-gradient(circle at 10% 0%,#f4d8d5 0,transparent 28rem),radial-gradient(circle at 100% 30%,#d5eadb 0,transparent 25rem),var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:max(22px,env(safe-area-inset-top)) max(22px,env(safe-area-inset-right)) max(22px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));-webkit-tap-highlight-color:transparent}
+main{width:min(720px,100%)}.card{background:var(--card);border:1px solid #e8e5dc;border-radius:26px;box-shadow:0 18px 55px #27392c18;padding:clamp(22px,5vw,42px)}
+.flag{height:12px;border-radius:99px;background:linear-gradient(to bottom,var(--red) 0 33.33%,white 33.33% 66.66%,var(--green) 66.66%);margin-bottom:26px}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--green);font-weight:800}
+h1{font-size:clamp(2rem,7vw,3.1rem);line-height:1.05;margin:8px 0 12px;letter-spacing:-.04em}
+p{line-height:1.55}.intro{color:var(--muted);font-size:1.08rem;margin:0 0 24px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-weight:700;font-size:.92rem}
+.track{height:10px;background:#eeeae0;border-radius:20px;margin:11px 0 27px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));border-radius:inherit;transition:width .35s ease}
+h2{font-size:clamp(1.25rem,4vw,1.65rem);line-height:1.3;margin:0 0 19px}
+.answers{display:grid;gap:11px}
+.answer{border:2px solid #e5e8e1;background:#fff;border-radius:14px;padding:14px 16px;text-align:left;font:inherit;font-weight:650;color:var(--ink);cursor:pointer;transition:.15s;touch-action:manipulation; -webkit-appearance:none;appearance:none}
+.answer:hover:not(:disabled),.answer:focus-visible{border-color:var(--green);background:#f3faf5;outline:none;transform:translateY(-1px)}
+.answer:disabled{cursor:default}.answer.correct{border-color:var(--green);background:#e9f5ed}.answer.wrong{border-color:var(--red);background:#fff0ef}
+.feedback{min-height:54px;margin:16px 0 3px;font-weight:700;line-height:1.45}.feedback.good{color:#206442}.feedback.try{color:#a63039}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
+button.primary{border:0;border-radius:999px;background:var(--ink);color:#fff;padding:13px 21px;font:inherit;font-size:1rem;font-weight:750;cursor:pointer;min-height:48px;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+button.primary:hover{background:var(--green)}a.primary-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.start{text-align:center}.start .flag{margin:0 auto 28px;max-width:440px}.start h1{margin-bottom:16px}.start p{max-width:510px;margin:0 auto 26px;color:var(--muted)}
+.bigemoji{font-size:3.4rem;margin:0 0 6px}.result{text-align:center}.result h2{font-size:2rem}.score{font-size:1.2rem;color:var(--muted)}
+.small{font-size:.86rem;color:var(--muted);margin-top:24px;text-align:center}
+@media(max-width:600px){body{padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));align-content:center}.card{border-radius:20px;padding:24px 20px}.answer{padding:15px 14px;min-height:52px}.intro{font-size:1rem}.small{margin-bottom:env(safe-area-inset-bottom)}}
+@media(hover:none){.answer:hover:not(:disabled){transform:none;background:#fff;border-color:#e5e8e1}}
+.nojs{max-width:720px;margin:28px auto;padding:24px;background:#fff;border:1px solid #e8e5dc;border-radius:20px}
+.nojs h2{margin-top:0}.nojs li{margin:0 0 20px;line-height:1.5}.nojs details{margin-top:6px;color:var(--green);font-weight:700}.nojs summary{cursor:pointer;padding:8px 0;touch-action:manipulation}
+</style>
+</head>
+<body>
+<main>
+<section class="card" id="app" aria-live="polite">
+<div class="start"><div class="flag"></div><div class="bigemoji">🧭</div><div class="eyebrow">Ein Quiz für Ungarn-Entdecker</div><h1>Wie gut kennst du Ungarn?</h1><p>Finde heraus, was du über Ungarns Hauptstadt, Flagge, Sprache und besondere Orte weißt. Es warten 10 Fragen auf dich.</p><a class="primary primary-link" id="go" href="#quiz-ohne-script">Quiz starten</a></div>
+</section>
+<p class="small">Viel Erfolg beim Ungarn-Quiz! 🇭🇺</p>
+</main>
+<noscript>
+<section id="quiz-ohne-script" class="nojs">
+<h2>Los geht’s! Beantworte die Fragen und tippe danach auf „Antwort ansehen“.</h2>
+<ol>
+<li>Wie heißt die Hauptstadt von Ungarn?<br>A) Budapest &nbsp; B) Bukarest &nbsp; C) Belgrad<details><summary>Antwort ansehen</summary>Richtig ist: Budapest.</details></li>
+<li>Welche Farben hat die ungarische Flagge von oben nach unten?<br>A) Grün – Weiß – Rot &nbsp; B) Rot – Weiß – Grün &nbsp; C) Weiß – Rot – Grün<details><summary>Antwort ansehen</summary>Richtig ist: Rot – Weiß – Grün.</details></li>
+<li>Welcher große Fluss fließt durch Budapest?<br>A) Rhein &nbsp; B) Donau &nbsp; C) Oder<details><summary>Antwort ansehen</summary>Richtig ist: die Donau.</details></li>
+<li>Wie heißt die ungarische Währung?<br>A) Euro &nbsp; B) Forint &nbsp; C) Zloty<details><summary>Antwort ansehen</summary>Richtig ist: Forint.</details></li>
+<li>Welche Sprache sprechen die meisten Menschen in Ungarn?<br>A) Ungarisch &nbsp; B) Rumänisch &nbsp; C) Tschechisch<details><summary>Antwort ansehen</summary>Richtig ist: Ungarisch.</details></li>
+<li>Wie heißt der größte See Mitteleuropas in Ungarn?<br>A) Bodensee &nbsp; B) Plattensee (Balaton) &nbsp; C) Genfersee<details><summary>Antwort ansehen</summary>Richtig ist: der Plattensee, auch Balaton genannt.</details></li>
+<li>Wofür ist Paprika in Ungarn besonders bekannt?<br>A) Als Gewürz in vielen Gerichten &nbsp; B) Als Bergname &nbsp; C) Als Münze<details><summary>Antwort ansehen</summary>Richtig ist: als beliebtes Gewürz in vielen Gerichten.</details></li>
+<li>An welches dieser Länder grenzt Ungarn?<br>A) Portugal &nbsp; B) Österreich &nbsp; C) Dänemark<details><summary>Antwort ansehen</summary>Richtig ist: Österreich.</details></li>
+<li>Wie heißt das große Parlamentsgebäude in Budapest?<br>A) Ungarisches Parlament &nbsp; B) Kolosseum &nbsp; C) Schiefer Turm<details><summary>Antwort ansehen</summary>Richtig ist: das Ungarische Parlament.</details></li>
+<li>Liegt Ungarn am Meer?<br>A) Ja, am Mittelmeer &nbsp; B) Ja, an der Ostsee &nbsp; C) Nein, Ungarn ist ein Binnenland<details><summary>Antwort ansehen</summary>Richtig ist: Nein, Ungarn ist ein Binnenland.</details></li>
+</ol>
+</section>
+</noscript>
+<script>
+const questions=[
+{q:"Wie heißt die Hauptstadt von Ungarn?",a:["Budapest","Bukarest","Belgrad"],c:0,tip:"Budapest liegt an beiden Ufern der Donau."},
+{q:"Welche Farben hat die ungarische Flagge von oben nach unten?",a:["Grün – Weiß – Rot","Rot – Weiß – Grün","Weiß – Rot – Grün"],c:1,tip:"Merksatz: oben Rot, in der Mitte Weiß, unten Grün."},
+{q:"Wie heißt der große Fluss, der durch Budapest fließt?",a:["Rhein","Donau","Oder"],c:1,tip:"Die Donau teilt Budapest in die Stadtteile Buda und Pest."},
+{q:"Wie heißt die ungarische Währung?",a:["Euro","Forint","Zloty"],c:1,tip:"Ungarn gehört zur Europäischen Union, bezahlt aber mit Forint."},
+{q:"Welche Sprache sprechen die meisten Menschen in Ungarn?",a:["Ungarisch","Rumänisch","Tschechisch"],c:0,tip:"Ungarisch klingt anders als viele Sprachen der Nachbarländer."},
+{q:"Welcher See ist der größte See Mitteleuropas und liegt in Ungarn?",a:["Bodensee","Plattensee (Balaton)","Genfersee"],c:1,tip:"Der Balaton wird oft auch das „ungarische Meer“ genannt."},
+{q:"Wofür ist Paprika in Ungarn besonders bekannt?",a:["Als beliebtes Gewürz in vielen Gerichten","Als Name eines Berges","Als ungarische Münze"],c:0,tip:"Paprika ist eine wichtige Zutat, zum Beispiel im Gulasch."},
+{q:"An welchem dieser Länder grenzt Ungarn?",a:["Portugal","Österreich","Dänemark"],c:1,tip:"Österreich liegt westlich von Ungarn."},
+{q:"Wie heißt das berühmte große Parlamentsgebäude in Budapest?",a:["Ungarisches Parlament","Kolosseum","Schiefer Turm"],c:0,tip:"Das Parlament steht direkt an der Donau und ist ein Wahrzeichen der Stadt."},
+{q:"Liegt Ungarn am Meer?",a:["Ja, am Mittelmeer","Ja, an der Ostsee","Nein, Ungarn ist ein Binnenland"],c:2,tip:"Ungarn hat keine Meeresküste und ist von anderen Ländern umgeben."}
+];
+let index=0,score=0,locked=false;
+const app=document.getElementById("app");
+function start(){index=0;score=0;showStart()}
+function showStart(){app.innerHTML='<div class="start"><div class="flag"></div><div class="bigemoji">🧭</div><div class="eyebrow">Ein Quiz für Ungarn-Entdecker</div><h1>Wie gut kennst du Ungarn?</h1><p>Finde heraus, was du über Ungarns Hauptstadt, Flagge, Sprache und besondere Orte weißt. Es warten 10 Fragen auf dich.</p><button type="button" class="primary" id="go">Quiz starten</button></div>';}
+function render(){locked=false;const item=questions[index];app.innerHTML='<div class="flag"></div><div class="topline"><span>Frage '+(index+1)+' von '+questions.length+'</span><span>⭐ '+score+' Punkte</span></div><div class="track" role="progressbar" aria-label="Fortschritt" aria-valuemin="0" aria-valuemax="'+questions.length+'" aria-valuenow="'+index+'"><div class="fill" style="width:'+(index/questions.length*100)+'%"></div></div><div class="eyebrow">Ungarn entdecken</div><h2>'+item.q+'</h2><div class="answers">'+item.a.map((x,i)=>'<button type="button" class="answer" data-i="'+i+'">'+String.fromCharCode(65+i)+') '+x+'</button>').join('')+'</div><div class="feedback" id="feedback" aria-live="polite"></div><div class="actions"><span class="topline">Punkte: '+score+'</span><button type="button" class="primary" id="next" hidden>'+(index===questions.length-1?'Ergebnis ansehen':'Nächste Frage')+' →</button></div>';
+
+}
+function choose(i){if(locked)return;locked=true;const item=questions[index],buttons=[...document.querySelectorAll(".answer")],fb=document.getElementById("feedback");buttons.forEach(b=>b.disabled=true);buttons[item.c].classList.add("correct");if(i===item.c){score++;fb.textContent="Richtig! "+item.tip;fb.className="feedback good"}else{buttons[i].classList.add("wrong");fb.textContent="Noch nicht ganz. "+item.tip;fb.className="feedback try"}document.querySelector(".actions .topline").textContent="Punkte: "+score;document.getElementById("next").hidden=false}
+function finish(){const pct=score/questions.length;let emoji=score>=8?"🏆":score>=5?"🌟":"🗺️";let msg=score>=8?"Fantastisch! Du bist ein echter Ungarn-Profi.":score>=5?"Gut gemacht! Du weißt schon eine Menge über Ungarn.":"Guter Anfang! Jetzt kennst du Ungarn schon ein bisschen besser.";app.innerHTML='<div class="flag"></div><div class="result"><div class="bigemoji">'+emoji+'</div><div class="eyebrow">Quiz geschafft</div><h2>'+msg+'</h2><p class="score">Du hast <strong>'+score+' von '+questions.length+'</strong> Fragen richtig beantwortet.</p><button type="button" class="primary" id="again">Nochmal spielen ↻</button></div>';}
+app.addEventListener("click",function(event){
+ const button=event.target.closest("button");
+ if(!button||!app.contains(button))return;
+ if(button.id==="go"){render();return}
+ if(button.classList.contains("answer")){choose(Number(button.dataset.i));return}
+ if(button.id==="next"){index++;index<questions.length?render():finish();return}
+ if(button.id==="again"){start()}
+});
+showStart();
+</script>
+</body>
+</html>
